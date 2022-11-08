@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Bercea_Anelise_Laborator2_MPA.Models;
+
 namespace Bercea_Anelise_Laborator2_MPA.Data
 {
     public class DbInitializer
@@ -14,25 +15,30 @@ namespace Bercea_Anelise_Laborator2_MPA.Data
                 {
                     return; // BD a fost creata anterior
                 }
-                context.Books.AddRange(
-                new Book
-                {
-                    Title = "Baltagul",
-                    Author = "Mihail Sadoveanu",Price=Decimal.Parse("22")},
-               
-                new Book
-                {
-                    Title = "Enigma Otiliei",
-                    Author = "George Calinescu",Price=Decimal.Parse("18")},
-               
-                new Book
-                {
-                    Title = "Maytrei",
-                    Author = "Mircea Eliade",Price=Decimal.Parse("27")}
-               
-                );
+                /*    context.Books.AddRange(
+                      new Book
+                      {
+                          Title = "Baltagul",
+                          Author = "Mihail Sadoveanu",
+                          Price=Decimal.Parse("22")},
+                      },
 
+                      new Book
+                      {
+                          Title = "Enigma Otiliei",
+                          Author = "George Calinescu",
+                          Price=Decimal.Parse("18")},
+                     },
 
+                      new Book
+                      {
+                          Title = "Maytrei",
+                          Author = "Mircea Eliade",
+                          Price=Decimal.Parse("27")
+                      }
+                      );
+
+                      */
                 context.Customers.AddRange(
                 new Customer
                 {
