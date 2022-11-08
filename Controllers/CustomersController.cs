@@ -10,85 +10,85 @@ using Bercea_Anelise_Laborator2_MPA.Models;
 
 namespace Bercea_Anelise_Laborator2_MPA.Controllers
 {
-    public class AuthorsController1 : Controller
+    public class CustomersController : Controller
     {
         private readonly LibraryContext _context;
 
-        public AuthorsController1(LibraryContext context)
+        public CustomersController(LibraryContext context)
         {
             _context = context;
         }
 
-        // GET: Authors
+        // GET: Customers
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Author.ToListAsync());
+              return View(await _context.Customers.ToListAsync());
         }
 
-        // GET: Authors/Details/5
+        // GET: Customers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Author == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var author = await _context.Author
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (author == null)
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerID == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(customer);
         }
 
-        // GET: Authors/Create
+        // GET: Customers/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Authors/Create
+        // POST: Customers/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FirstName,LastName")] Author author)
+        public async Task<IActionResult> Create([Bind("CustomerID,Name,Adress,BirthDate")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(author);
+                _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(author);
+            return View(customer);
         }
 
-        // GET: Authors/Edit/5
+        // GET: Customers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Author == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var author = await _context.Author.FindAsync(id);
-            if (author == null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer == null)
             {
                 return NotFound();
             }
-            return View(author);
+            return View(customer);
         }
 
-        // POST: Authors/Edit/5
+        // POST: Customers/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FirstName,LastName")] Author author)
+        public async Task<IActionResult> Edit(int id, [Bind("CustomerID,Name,Adress,BirthDate")] Customer customer)
         {
-            if (id != author.Id)
+            if (id != customer.CustomerID)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
             {
                 try
                 {
-                    _context.Update(author);
+                    _context.Update(customer);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AuthorExists(author.Id))
+                    if (!CustomerExists(customer.CustomerID))
                     {
                         return NotFound();
                     }
@@ -113,49 +113,49 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(author);
+            return View(customer);
         }
 
-        // GET: Authors/Delete/5
+        // GET: Customers/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Author == null)
+            if (id == null || _context.Customers == null)
             {
                 return NotFound();
             }
 
-            var author = await _context.Author
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (author == null)
+            var customer = await _context.Customers
+                .FirstOrDefaultAsync(m => m.CustomerID == id);
+            if (customer == null)
             {
                 return NotFound();
             }
 
-            return View(author);
+            return View(customer);
         }
 
-        // POST: Authors/Delete/5
+        // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Author == null)
+            if (_context.Customers == null)
             {
-                return Problem("Entity set 'LibraryContext.Author'  is null.");
+                return Problem("Entity set 'LibraryContext.Customers'  is null.");
             }
-            var author = await _context.Author.FindAsync(id);
-            if (author != null)
+            var customer = await _context.Customers.FindAsync(id);
+            if (customer != null)
             {
-                _context.Author.Remove(author);
+                _context.Customers.Remove(customer);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AuthorExists(int id)
+        private bool CustomerExists(int id)
         {
-          return _context.Author.Any(e => e.Id == id);
+          return _context.Customers.Any(e => e.CustomerID == id);
         }
     }
 }

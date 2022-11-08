@@ -4,6 +4,7 @@ using Bercea_Anelise_Laborator2_MPA.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bercea_Anelise_Laborator2_MPA.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20221108171559_OrdersCreate")]
+    partial class OrdersCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Author", (string)null);
+                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Book", b =>
@@ -55,7 +57,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(6,2)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -118,44 +120,6 @@ namespace Bercea_Anelise_Laborator2_MPA.Migrations
                     b.ToTable("Order", (string)null);
                 });
 
-            modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.PublishedBook", b =>
-                {
-                    b.Property<int>("BookID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PublisherID")
-                        .HasColumnType("int");
-
-                    b.HasKey("BookID", "PublisherID");
-
-                    b.HasIndex("PublisherID");
-
-                    b.ToTable("PublishedBook", (string)null);
-                });
-
-            modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Publisher", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
-
-                    b.Property<string>("Adress")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
-                    b.Property<string>("PublisherName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Publisher", (string)null);
-                });
-
             modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Book", b =>
                 {
                     b.HasOne("Bercea_Anelise_Laborator2_MPA.Models.Author", "Author")
@@ -184,25 +148,6 @@ namespace Bercea_Anelise_Laborator2_MPA.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.PublishedBook", b =>
-                {
-                    b.HasOne("Bercea_Anelise_Laborator2_MPA.Models.Book", "Book")
-                        .WithMany("PublishedBooks")
-                        .HasForeignKey("BookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Bercea_Anelise_Laborator2_MPA.Models.Publisher", "Publisher")
-                        .WithMany("PublishedBooks")
-                        .HasForeignKey("PublisherID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Book");
-
-                    b.Navigation("Publisher");
-                });
-
             modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Author", b =>
                 {
                     b.Navigation("Books");
@@ -211,18 +156,11 @@ namespace Bercea_Anelise_Laborator2_MPA.Migrations
             modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Book", b =>
                 {
                     b.Navigation("Orders");
-
-                    b.Navigation("PublishedBooks");
                 });
 
             modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Customer", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("Bercea_Anelise_Laborator2_MPA.Models.Publisher", b =>
-                {
-                    b.Navigation("PublishedBooks");
                 });
 #pragma warning restore 612, 618
         }
