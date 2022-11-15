@@ -12,6 +12,6 @@ namespace Bercea_Anelise_Laborator2_MPA.Models
 
         [StringLength(70)]
         public string Adress { get; set; }
-        public ICollection<PublishedBook> PublishedBooks { get; set; }
+        public ICollection<PublishedBook>? PublishedBooks { get; set; }
     }
 }

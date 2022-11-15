@@ -160,8 +160,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
                 //catch (DbUpdateConcurrencyException)
                 catch (DbUpdateException /* ex */)
                 {
-                    ModelState.AddModelError("", "Unable to save changes. " +
- "Try again, and if the problem persists, ");
+                    ModelState.AddModelError("", "Unable to save changes. " + "Try again, and if the problem persists, ");
                 }
                 return RedirectToAction(nameof(Index));
             }

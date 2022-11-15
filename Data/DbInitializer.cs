@@ -18,63 +18,69 @@ namespace Bercea_Anelise_Laborator2_MPA.Data
                 {
                     return; // BD a fost creata anterior
                 }
-
-                /*    context.Books.AddRange(
+                /*
+                    context.Books.AddRange(
                       new Book
                       {
+                          ID = 20,
                           Title = "Baltagul",
-                          Author = "Mihail Sadoveanu",
-                          Price=Decimal.Parse("22")},
+                          //Author = "Mihail Sadoveanu",
+                          Price=Decimal.Parse("22")
                       },
 
                       new Book
                       {
+                          ID = 21,
                           Title = "Enigma Otiliei",
-                          Author = "George Calinescu",
-                          Price=Decimal.Parse("18")},
+                          //Author = "George Calinescu",
+                          Price=Decimal.Parse("18")
                      },
 
                       new Book
                       {
+                          ID = 22,
                           Title = "Maytrei",
-                          Author = "Mircea Eliade",
+                         // Author = "Mircea Eliade",
                           Price=Decimal.Parse("27")
                       }
                       );
+                //context.SaveChanges(); 
+                
 
-                     
                 context.Customers.AddRange(
                 new Customer
                 {
+                    CustomerID=1050,
                     Name = "Popescu Marcela",
                     Adress = "Str. Plopilor, nr. 24",
                     BirthDate = DateTime.Parse("1979-09-01")
                 },
                 new Customer
                 {
+                    CustomerID=1045,
                     Name = "Mihailescu Cornel",
                     Adress = "Str. Bucuresti, nr.45, ap. 2",BirthDate=DateTime.Parse("1969 - 07 - 08")}
                
                 );
 
-                context.SaveChanges(); 
+                //context.SaveChanges(); 
                 
-
+         
                 //!!Atentie in tabelel Books si Authors au fost introduse date in laboratorul anterior.Ne vom asigura ca datele pe care dorim sa le introducem in Orders,Publishers si PublishedBook sunt consistente
                  var orders = new Order[]
                  {
-                     new Order{BookID=1,CustomerID=1050,OrderDate=DateTime.Parse("2021-02-25")},
-                     new Order{BookID=3,CustomerID=1045,OrderDate=DateTime.Parse("2021-09-28")},
-                     new Order{BookID=1,CustomerID=1045,OrderDate=DateTime.Parse("2021-10-28")},
-                     new Order{BookID=2,CustomerID=1050,OrderDate=DateTime.Parse("2021-09-28")},
-                     new Order{BookID=4,CustomerID=1050,OrderDate=DateTime.Parse("2021-09-28")},
-                     new Order{BookID=6,CustomerID=1050,OrderDate=DateTime.Parse("2021-10-28")},
+                     new Order{BookID=21,CustomerID=1050,OrderDate=DateTime.Parse("2021-02-25")},
+                     new Order{BookID=22,CustomerID=1045,OrderDate=DateTime.Parse("2021-09-28")},
+                     new Order{BookID=20,CustomerID=1045,OrderDate=DateTime.Parse("2021-10-28")},
+                     new Order{BookID=22,CustomerID=1050,OrderDate=DateTime.Parse("2021-09-28")},
+                     new Order{BookID=20,CustomerID=1050,OrderDate=DateTime.Parse("2021-09-28")},
+                     
                  };
                 foreach (Order e in orders)
                 {
                     context.Orders.Add(e);
                 }
-                context.SaveChanges();
+                context.SaveChanges(); 
                 var publishers = new Publisher[]
                 {
 
@@ -105,15 +111,15 @@ namespace Bercea_Anelise_Laborator2_MPA.Data
                      new PublishedBook {
                      BookID = books.Single(c => c.Title == "Panza de paianjen" ).ID, PublisherID = publishers.Single(i => i.PublisherName == "Paralela 45").ID
                      },
-                                        new PublishedBook {
+                     new PublishedBook {
                      BookID = books.Single(c => c.Title == "De veghe in lanul de secara" ).ID, PublisherID = publishers.Single(i => i.PublisherName == "Paralela 45").ID
-                     },
+                     }, 
                 };
                 foreach (PublishedBook pb in publishedbooks)
                 {
                     context.PublishedBooks.Add(pb);
                 }
-                context.SaveChanges();*/
+                context.SaveChanges(); */
             }
         }
 

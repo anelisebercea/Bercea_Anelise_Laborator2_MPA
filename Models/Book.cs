@@ -17,6 +17,6 @@ namespace Bercea_Anelise_Laborator2_MPA.Models
         [Column(TypeName = "decimal(6, 2)")]
         public decimal Price { get; set; }
         public ICollection<Order>? Orders { get; set; }
-        public ICollection<PublishedBook> PublishedBooks { get; set; }
+        public ICollection<PublishedBook>? PublishedBooks { get; set; }
     }
 }
