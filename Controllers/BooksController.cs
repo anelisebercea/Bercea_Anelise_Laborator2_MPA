@@ -109,7 +109,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
         // GET: Books/Create
         public IActionResult Create()
         {
-            var authors = _context.Author.Select(x => new
+            var authors = _context.Authors.Select(x => new
             {
                 x.Id,
                 FullName = x.FirstName + " " + x.LastName
@@ -155,7 +155,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
             {
                 return NotFound();
             }
-            ViewData["AuthorId"] = new SelectList(_context.Author, "Id", "Id", book.AuthorId);
+            ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Id", book.AuthorId);
             return View(book);
         }
 
@@ -205,7 +205,7 @@ namespace Bercea_Anelise_Laborator2_MPA.Controllers
                 return NotFound();
             }
             var bookToUpdate = await _context.Books.FirstOrDefaultAsync(s => s.ID == id);
-            if (await TryUpdateModelAsync<Book>(bookToUpdate, "", s => s.Author, s => s.Title, s => s.Price))
+            if (await TryUpdateModelAsync<Book>(bookToUpdate, "", s => s.AuthorId, s => s.Title, s => s.Price))
             {
                 try
                 {
